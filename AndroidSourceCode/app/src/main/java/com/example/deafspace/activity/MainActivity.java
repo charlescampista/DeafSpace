@@ -1,4 +1,4 @@
-package com.example.deafspace;
+package com.example.deafspace.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.deafspace.R;
+import com.example.deafspace.classes.Category;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        Category category = new Category();
+        category.setName("Alimentos");
+        Toast.makeText(this,category.getName(),Toast.LENGTH_LONG).show();
     }
 
 }
