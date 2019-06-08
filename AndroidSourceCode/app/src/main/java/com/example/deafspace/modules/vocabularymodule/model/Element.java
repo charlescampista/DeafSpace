@@ -1,11 +1,11 @@
-package com.example.deafspace.classes;
+package com.example.deafspace.modules.vocabularymodule.model;
 
-public class Category {
-
+public class Element {
     private String uuid;
     private String name;
     private String pathImage;
-
+    private String pathVideo;
+    private Category category;
 
     public String getUuid() {
         return uuid;
@@ -29,5 +29,21 @@ public class Category {
 
     public void setPathImage(String pathImage) {
         this.pathImage = pathImage;
+    }
+
+    public String getPathVideo() {
+        return pathVideo;
+    }
+
+    public void setPathVideo(String pathVideo) {
+        this.pathVideo = pathVideo;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
