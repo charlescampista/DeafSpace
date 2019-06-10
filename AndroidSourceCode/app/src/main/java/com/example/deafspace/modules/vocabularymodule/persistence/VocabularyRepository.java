@@ -1,0 +1,151 @@
+package com.example.deafspace.modules.vocabularymodule.persistence;
+
+import android.app.Application;
+import android.os.AsyncTask;
+
+import com.example.deafspace.modules.vocabularymodule.model.Category;
+import com.example.deafspace.modules.vocabularymodule.model.ElementPOJO;
+
+import java.util.List;
+
+import androidx.lifecycle.LiveData;
+
+public class VocabularyRepository {
+
+    private VocabularyDAO vocabularyDAO;
+
+    private LiveData<ElementPOJO> element;
+    private LiveData<List<ElementPOJO>> allElements;
+    private LiveData<Category> category;
+    private LiveData<List<Category>> allCategories;
+
+
+    public VocabularyRepository(Application application) {
+        VocabularyDB db = VocabularyDB.getDatabase(application);
+        vocabularyDAO = db.vocabularyDAO();
+        allElements = vocabularyDAO.getAllElements();
+        allCategories = vocabularyDAO.getAllCategories();
+    }
+
+    //GETTERS
+    public LiveData<ElementPOJO> getTrail(ElementPOJO element) {
+        return vocabularyDAO.getElementByUuid(element.getUuid());
+    }
+    public LiveData<List<ElementPOJO>> getAllElements() {
+        return allElements;
+    }
+    public LiveData<Category> getCategory(Category category) {
+        return vocabularyDAO.getCategoryByUuid(category.getUuid());
+    }
+    public LiveData<List<Category>> getAllCategories() {
+        return allCategories;
+    }
+
+    //ELEMENTS
+    public void insertElement(ElementPOJO element){
+        new insertElementAsyncTask(vocabularyDAO).execute(element);
+    }
+    public void updateElement(ElementPOJO element){
+        new updateElementAsyncTask(vocabularyDAO).execute(element);
+    }
+    public void deleteElement(ElementPOJO element){
+        new deleteElementAsyncTask(vocabularyDAO).execute(element);
+    }
+
+
+    //CATEGORIES
+    public void insertCategory(Category category){
+        new insertCategoryAsyncTask(vocabularyDAO).execute(category);
+    }
+    public void updateCategory(Category category){
+        new updateCategoryAsyncTask(vocabularyDAO).execute(category);
+    }
+    public void deleteCategory(Category category){
+        new deleteCategoryAsyncTask(vocabularyDAO).execute(category);
+    }
+
+
+    //INSERT CLASSES
+
+    class insertElementAsyncTask extends AsyncTask<ElementPOJO,Void, Void> {
+        private VocabularyDAO asyncVocabularyDAO;
+        insertElementAsyncTask(VocabularyDAO dao){
+            asyncVocabularyDAO = dao;
+        }
+        @Override
+        protected Void doInBackground(final ElementPOJO... elements) {
+            asyncVocabularyDAO.insertElement(elements[0]);
+            return null;
+        }
+    }
+
+    class insertCategoryAsyncTask extends AsyncTask<Category,Void, Void> {
+        private VocabularyDAO asyncVocabularyDAO;
+        insertCategoryAsyncTask(VocabularyDAO dao){
+            asyncVocabularyDAO = dao;
+        }
+        @Override
+        protected Void doInBackground(final Category... categories) {
+            asyncVocabularyDAO.insertCategory(categories[0]);
+            return null;
+        }
+    }
+
+
+
+    //UPDATE CLASSES
+
+    class updateElementAsyncTask extends AsyncTask<ElementPOJO,Void, Void> {
+        private VocabularyDAO asyncVocabularyDAO;
+        updateElementAsyncTask(VocabularyDAO dao){
+            asyncVocabularyDAO = dao;
+        }
+        @Override
+        protected Void doInBackground(final ElementPOJO... elements) {
+            asyncVocabularyDAO.updateElement(elements[0]);
+            return null;
+        }
+    }
+
+    class updateCategoryAsyncTask extends AsyncTask<Category,Void, Void> {
+        private VocabularyDAO asyncVocabularyDAO;
+        updateCategoryAsyncTask(VocabularyDAO dao){
+            asyncVocabularyDAO = dao;
+        }
+        @Override
+        protected Void doInBackground(final Category... categories) {
+            asyncVocabularyDAO.updateCategory(categories[0]);
+            return null;
+        }
+    }
+
+
+
+    //DELETE CLASSES
+
+    class deleteElementAsyncTask extends AsyncTask<ElementPOJO,Void, Void> {
+        private VocabularyDAO asyncVocabularyDAO;
+        deleteElementAsyncTask(VocabularyDAO dao){
+            asyncVocabularyDAO = dao;
+        }
+        @Override
+        protected Void doInBackground(final ElementPOJO... elements) {
+            asyncVocabularyDAO.deleteElement(elements[0]);
+            return null;
+        }
+    }
+
+    class deleteCategoryAsyncTask extends AsyncTask<Category,Void, Void> {
+        private VocabularyDAO asyncVocabularyDAO;
+        deleteCategoryAsyncTask(VocabularyDAO dao){
+            asyncVocabularyDAO = dao;
+        }
+        @Override
+        protected Void doInBackground(final Category... categories) {
+            asyncVocabularyDAO.deleteCategory(categories[0]);
+            return null;
+        }
+    }
+
+
+}

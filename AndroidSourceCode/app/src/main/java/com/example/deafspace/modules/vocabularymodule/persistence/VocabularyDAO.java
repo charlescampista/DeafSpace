@@ -1,7 +1,7 @@
 package com.example.deafspace.modules.vocabularymodule.persistence;
 
 import com.example.deafspace.modules.vocabularymodule.model.Category;
-import com.example.deafspace.modules.vocabularymodule.model.Element;
+import com.example.deafspace.modules.vocabularymodule.model.ElementPOJO;
 
 import java.util.List;
 
@@ -19,22 +19,22 @@ public interface VocabularyDAO {
     //ELEMENT
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertElement(Element element);
+    void insertElement(ElementPOJO element);
 
     @Delete
-    void deleteElement(Element element);
+    void deleteElement(ElementPOJO element);
 
     @Update
-    void updateElement(Element element);
+    void updateElement(ElementPOJO element);
 
     @Query("SELECT * FROM Element")
-    LiveData<List<Element>> getAllElements();
+    LiveData<List<ElementPOJO>> getAllElements();
 
     @Query("SELECT * FROM Element WHERE uuid LIKE :uuid ")
-    LiveData<Element> getTrailByGuid(String uuid);
+    LiveData<ElementPOJO> getElementByUuid(String uuid);
 
     @Query("SELECT * FROM Element WHERE uuidcategory like :uuidCategory")
-    LiveData<List<Element>> getAllElementsFromCategory(String uuidCategory);
+    LiveData<List<ElementPOJO>> getAllElementsFromCategory(String uuidCategory);
 
 
 
