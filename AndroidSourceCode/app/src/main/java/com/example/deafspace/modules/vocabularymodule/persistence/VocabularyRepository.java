@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import com.example.deafspace.modules.vocabularymodule.model.Category;
+import com.example.deafspace.modules.vocabularymodule.model.Element;
 import com.example.deafspace.modules.vocabularymodule.model.ElementPOJO;
 
 import java.util.List;
@@ -28,10 +29,10 @@ public class VocabularyRepository {
     }
 
     //GETTERS
-    public LiveData<ElementPOJO> getTrail(ElementPOJO element) {
+    public LiveData<ElementPOJO> getElementPOJO(ElementPOJO element) {
         return vocabularyDAO.getElementByUuid(element.getUuid());
     }
-    public LiveData<List<ElementPOJO>> getAllElements() {
+    public LiveData<List<ElementPOJO>> getAllElementsPOJO() {
         return allElements;
     }
     public LiveData<Category> getCategory(Category category) {
@@ -40,8 +41,18 @@ public class VocabularyRepository {
     public LiveData<List<Category>> getAllCategories() {
         return allCategories;
     }
+    public LiveData<Element> getElement(Element element) {
+        LiveData<ElementPOJO> elementPOJO =  vocabularyDAO.getElementByUuid(element.getUuid());
+        //FAZER A CONVERSÃO PARA ELEMENT E RETORNAR.
+        return null;
+    }
+    public LiveData<List<Element>> getAllElements() {
+        LiveData<List<ElementPOJO>> list = allElements;
+        //FAZER A CONVERSÃO PARA UMA LISTA DE ELEMENTS
+        return null;
+    }
 
-    //ELEMENTS
+    //ELEMENTS POJO
     public void insertElement(ElementPOJO element){
         new insertElementAsyncTask(vocabularyDAO).execute(element);
     }
@@ -49,6 +60,19 @@ public class VocabularyRepository {
         new updateElementAsyncTask(vocabularyDAO).execute(element);
     }
     public void deleteElement(ElementPOJO element){
+        new deleteElementAsyncTask(vocabularyDAO).execute(element);
+    }
+    //ELEMENTS
+    public void insertElement(Element element){
+        //CONVERTER ELEMENTO PARA POJO.
+        new insertElementAsyncTask(vocabularyDAO).execute(element);
+    }
+    public void updateElement(Element element){
+        //CONVERTER ELEMENTO PARA POJO.
+        new updateElementAsyncTask(vocabularyDAO).execute(element);
+    }
+    public void deleteElement(Element element){
+        //CONVERTER ELEMENTO PARA POJO.
         new deleteElementAsyncTask(vocabularyDAO).execute(element);
     }
 
