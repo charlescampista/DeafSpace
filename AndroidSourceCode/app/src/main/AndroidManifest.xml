@@ -9,12 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".modules.vocabularymodule.activities.VocabularyContextActivity"></activity>
+        <activity android:name=".modules.vocabularymodule.activities.VocabularyActivity" />
+        <activity android:name=".activities.AdultSpaceActivity" />
         <activity
-            android:name=".activity.ChildrenSpaceActivity"
+            android:name=".activities.ChildrenSpaceActivity"
             android:label="@string/title_activity_children_space"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

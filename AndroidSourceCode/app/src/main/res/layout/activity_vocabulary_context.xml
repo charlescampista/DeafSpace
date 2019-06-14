@@ -5,12 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:orientation="vertical"
-    tools:context=".activities.ChildrenSpaceActivity">
-
+    tools:context=".modules.vocabularymodule.activities.VocabularyContextActivity">
 
     <ListView
-        android:id="@+id/lvTrocarPorGridChildren"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    android:id="@+id/lvTrocarPorGridVocabularyContext"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+
 </LinearLayout>

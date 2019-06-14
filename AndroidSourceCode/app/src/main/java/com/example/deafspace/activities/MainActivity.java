@@ -1,14 +1,13 @@
-package com.example.deafspace.activity;
+package com.example.deafspace.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.deafspace.R;
-import com.example.deafspace.modules.vocabularymodule.model.Category;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,12 +16,16 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Intent intent = null;
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    Toast.makeText(getBaseContext(),"Home",Toast.LENGTH_SHORT).show();
+                case R.id.navigation_children_space:
+                    intent = new Intent(getBaseContext(), ChildrenSpaceActivity.class);
+                    startActivity(intent);
+
                     return true;
-                case R.id.navigation_dashboard:
-                    Toast.makeText(getBaseContext(),"Dashboard",Toast.LENGTH_SHORT).show();
+                case R.id.navigation_adult_space:
+                    intent = new Intent(getBaseContext(), AdultSpaceActivity.class);
+                    startActivity(intent);
                     return true;
             }
             return false;
@@ -37,9 +40,6 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        Category category = new Category();
-        category.setName("Alimentos");
-        Toast.makeText(this,category.getName(),Toast.LENGTH_LONG).show();
     }
 
 }

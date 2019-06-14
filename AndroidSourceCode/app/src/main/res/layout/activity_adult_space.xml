@@ -6,11 +6,10 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context=".activities.ChildrenSpaceActivity">
-
+    tools:context=".activities.AdultSpaceActivity">
 
     <ListView
-        android:id="@+id/lvTrocarPorGridChildren"
+        android:id="@+id/lvTrocarPorGridAdult"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

@@ -54,7 +54,7 @@ public class VocabularyRepository {
 
     //ELEMENTS POJO
     public void insertElement(ElementPOJO element){
-        new insertElementAsyncTask(vocabularyDAO).execute(element);
+        //new insertElementAsyncTask(vocabularyDAO).execute(element);
     }
     public void updateElement(ElementPOJO element){
         new updateElementAsyncTask(vocabularyDAO).execute(element);
@@ -69,11 +69,11 @@ public class VocabularyRepository {
     }
     public void updateElement(Element element){
         //CONVERTER ELEMENTO PARA POJO.
-        new updateElementAsyncTask(vocabularyDAO).execute(element);
+        //new updateElementAsyncTask(vocabularyDAO).execute(element);
     }
     public void deleteElement(Element element){
         //CONVERTER ELEMENTO PARA POJO.
-        new deleteElementAsyncTask(vocabularyDAO).execute(element);
+        //new deleteElementAsyncTask(vocabularyDAO).execute(element);
     }
 
 
@@ -91,14 +91,28 @@ public class VocabularyRepository {
 
     //INSERT CLASSES
 
-    class insertElementAsyncTask extends AsyncTask<ElementPOJO,Void, Void> {
+    class insertElementPOJOAsyncTask extends AsyncTask<ElementPOJO,Void, Void> {
         private VocabularyDAO asyncVocabularyDAO;
-        insertElementAsyncTask(VocabularyDAO dao){
+        insertElementPOJOAsyncTask(VocabularyDAO dao){
             asyncVocabularyDAO = dao;
         }
         @Override
         protected Void doInBackground(final ElementPOJO... elements) {
             asyncVocabularyDAO.insertElement(elements[0]);
+            return null;
+        }
+    }
+
+    class insertElementAsyncTask extends AsyncTask<Element,Void, Void> {
+        private VocabularyDAO asyncVocabularyDAO;
+        insertElementAsyncTask(VocabularyDAO dao){
+            asyncVocabularyDAO = dao;
+        }
+        @Override
+        protected Void doInBackground(final Element... elements) {
+            //Falta checar se o valor ja esta no banco de dados, se não estiver inserir um objeto novo.
+            ElementPOJO elementPOJO = asyncVocabularyDAO.getElementByUuid(elements[0].getUuid()).getValue();
+            asyncVocabularyDAO.insertElement(elementPOJO);
             return null;
         }
     }
