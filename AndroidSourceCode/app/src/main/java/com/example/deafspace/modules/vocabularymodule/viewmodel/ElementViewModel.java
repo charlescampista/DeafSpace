@@ -1,10 +1,9 @@
 package com.example.deafspace.modules.vocabularymodule.viewmodel;
 
 import android.app.Application;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.example.deafspace.modules.vocabularymodule.model.Element;
-import com.example.deafspace.modules.vocabularymodule.model.ElementPOJO;
 import com.example.deafspace.modules.vocabularymodule.persistence.VocabularyRepository;
 
 import java.util.List;

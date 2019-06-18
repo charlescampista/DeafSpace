@@ -1,17 +1,15 @@
 package com.example.deafspace.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.deafspace.R;
-import com.example.deafspace.adapters.TestAdultAdapter;
 import com.example.deafspace.adapters.TestChildrenAdapter;
 
 import java.util.ArrayList;

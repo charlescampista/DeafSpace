@@ -1,6 +1,6 @@
 package com.example.deafspace.modules.vocabularymodule.activities;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -8,7 +8,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.deafspace.R;
-import com.example.deafspace.adapters.TestAdultAdapter;
 import com.example.deafspace.modules.vocabularymodule.adapters.VocabularyCategoryAdapter;
 import com.example.deafspace.modules.vocabularymodule.model.Category;
 
