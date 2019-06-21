@@ -1,37 +1,35 @@
-package com.example.deafspace.activities;
-
-import android.os.Bundle;
+package com.example.deafspace.application.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.deafspace.R;
-import com.example.deafspace.adapters.TestChildrenAdapter;
+import com.example.deafspace.application.adapters.TestAdultAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChildrenSpaceActivity extends AppCompatActivity {
+public class AdultSpaceActivity extends AppCompatActivity {
 
-    ListView lvTrocarPorGridChildren;
+    GridView gvItensAdultSpace;
     List<String> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_children_space);
+        setContentView(R.layout.activity_adult_space);
 
-        lvTrocarPorGridChildren = (ListView) findViewById(R.id.lvTrocarPorGridChildren);
+        gvItensAdultSpace = (GridView) findViewById(R.id.gvItensAdultSpace);
         list = new ArrayList<String>();
         for(int i=0; i<30; i++) list.add("Adult Space"+i);
-        TestChildrenAdapter testChildrenAdapter = new TestChildrenAdapter(list,this);
-        lvTrocarPorGridChildren.setAdapter(testChildrenAdapter);
+        TestAdultAdapter testAdultAdapter = new TestAdultAdapter(list,this);
+        gvItensAdultSpace.setAdapter(testAdultAdapter);
 
-        lvTrocarPorGridChildren.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gvItensAdultSpace.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getBaseContext(),"Item Clicado", Toast.LENGTH_SHORT).show();
@@ -39,6 +37,9 @@ public class ChildrenSpaceActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-
+    }
 }

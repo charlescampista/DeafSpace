@@ -1,4 +1,4 @@
-package com.example.deafspace.activities;
+package com.example.deafspace.application.activities;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.example.deafspace.adapters;
+package com.example.deafspace.application.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,15 +8,16 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.deafspace.R;
+import com.example.deafspace.application.model.Module;
 
 import java.util.List;
 
-public class TestAdultAdapter extends BaseAdapter {
+public class TestChildrenAdapter extends BaseAdapter {
 
-    private List<String> listItens;
+    private List<Module> listItens;
     private Context context;
 
-    public TestAdultAdapter(List<String> listItens, Context context) {
+    public TestChildrenAdapter(List<Module> listItens, Context context) {
         this.listItens = listItens;
         this.context = context;
     }
@@ -28,7 +29,7 @@ public class TestAdultAdapter extends BaseAdapter {
     }
 
     @Override
-    public String getItem(int position) {
+    public Module getItem(int position) {
         return listItens.get(position);
     }
 
@@ -41,13 +42,14 @@ public class TestAdultAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.test_adult_adapter,parent,false);
+        View view = inflater.inflate(R.layout.test_children_adapter,parent,false);
 
-        String item = listItens.get(position);
+        Module item = listItens.get(position);
 
-        TextView tvTitleTestAdultAdapter = (TextView) view.findViewById(R.id.tvTitleTestAdultAdapter);
-        tvTitleTestAdultAdapter.setText(item);
+        TextView tvTitleTestAdultAdapter = (TextView) view.findViewById(R.id.tvTitleTestChildrenAdapter);
+        tvTitleTestAdultAdapter.setText(item.getName());
 
         return view;
     }
+
 }
