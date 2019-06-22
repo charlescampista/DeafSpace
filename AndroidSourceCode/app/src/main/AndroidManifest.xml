@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modules.vocabularymodule.activities.VocabularyContextActivity"></activity>
+        <activity android:name=".modules.vocabularymodule.activities.VocabularyCategoriesActivity"></activity>
         <activity android:name=".modules.vocabularymodule.activities.VocabularyActivity" />
         <activity android:name=".application.activities.AdultSpaceActivity" />
         <activity

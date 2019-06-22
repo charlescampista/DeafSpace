@@ -1,5 +1,6 @@
 package com.example.deafspace.application.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +12,9 @@ import android.widget.Toast;
 
 import com.example.deafspace.R;
 import com.example.deafspace.application.adapters.TestChildrenAdapter;
+import com.example.deafspace.application.enums.Modules;
 import com.example.deafspace.application.model.Module;
+import com.example.deafspace.modules.vocabularymodule.activities.VocabularyCategoriesActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +31,9 @@ public class ChildrenSpaceActivity extends AppCompatActivity {
 
         gvModulesChildrenSpace = (GridView) findViewById(R.id.gvModulesChildrenSpace);
         list = new ArrayList<Module>();
-        list.add(new Module("","Vocabulary","Lista","",0));
-        list.add(new Module("","Customizado","Lista","",0));
-        list.add(new Module("","Historia","Animação","",0));
+        list.add(new Module("","Modulo Vocabulary","Lista","",0, Modules.VOCABULARY));
+        list.add(new Module("","Modulo Customizado","Lista","",0,Modules.CUSTOMIZED_ELEMENTS));
+        list.add(new Module("","Modulo Historia","Animação","",0,Modules.HISTORY));
         TestChildrenAdapter testChildrenAdapter = new TestChildrenAdapter(list,this);
         gvModulesChildrenSpace.setAdapter(testChildrenAdapter);
 
@@ -38,10 +41,18 @@ public class ChildrenSpaceActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getBaseContext(),"Item Clicado", Toast.LENGTH_SHORT).show();
+                Module module = (Module) parent.getAdapter().getItem(position);
+                startActivity(getModuleActivity(module.getModuleType()));
             }
         });
     }
 
-
+    private Intent getModuleActivity(Modules moduleType) {
+        switch (moduleType){
+            case VOCABULARY:
+                return new Intent(this,VocabularyCategoriesActivity.class);
+        }
+        return null;
+    }
 
 }

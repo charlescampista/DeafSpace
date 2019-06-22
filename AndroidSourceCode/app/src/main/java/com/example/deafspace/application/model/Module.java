@@ -1,5 +1,7 @@
 package com.example.deafspace.application.model;
 
+import com.example.deafspace.application.enums.Modules;
+
 public class Module {
 
     private String uid;
@@ -7,16 +9,17 @@ public class Module {
     private String type;
     private String imagePath;
     private int image;
-
+    private Modules moduleType;
     public Module() {
     }
 
-    public Module(String uid, String name, String type, String imagePath, int image) {
+    public Module(String uid, String name, String type, String imagePath, int image, Modules moduleType) {
         this.uid = uid;
         this.name = name;
         this.type = type;
         this.imagePath = imagePath;
         this.image = image;
+        this.moduleType = moduleType;
     }
 
     public String getUid() {
@@ -57,5 +60,13 @@ public class Module {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public Modules getModuleType() {
+        return moduleType;
+    }
+
+    public void setModuleType(Modules moduleType) {
+        this.moduleType = moduleType;
     }
 }
