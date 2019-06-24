@@ -3,6 +3,9 @@ package com.example.deafspace.application.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+
+import com.example.deafspace.adultspace.activities.AdultSpaceLockScreenActivity;
+import com.example.deafspace.childrenspace.activities.ChildrenSpaceActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -24,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
                     return true;
                 case R.id.navigation_adult_space:
-                    intent = new Intent(getBaseContext(), AdultSpaceActivity.class);
+                    intent = new Intent(getBaseContext(), AdultSpaceLockScreenActivity.class);
                     startActivity(intent);
                     return true;
             }

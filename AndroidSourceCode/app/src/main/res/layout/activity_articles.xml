@@ -4,13 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context=".adultspace.activities.AdultSpaceActivity">
+    android:background="@color/colorPrimary"
+    android:id="@+id/articlesContainer"
+    tools:context=".adultspace.items.articles.activities.ArticlesActivity">
 
-    <GridView
-        android:id="@+id/gvItensAdultSpace"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="3"/>
 </LinearLayout>

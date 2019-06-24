@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
-
     package="com.example.deafspace">
 
     <application
@@ -11,11 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modules.vocabularymodule.activities.VocabularyCategoriesActivity"></activity>
-        <activity android:name=".modules.vocabularymodule.activities.VocabularyActivity" />
-        <activity android:name=".application.activities.AdultSpaceActivity" />
+        <activity android:name=".adultspace.items.downloads.activities.DownloadsActivity"></activity>
+        <activity android:name=".adultspace.items.surveys.activities.SurveyActivity" />
+        <activity android:name=".adultspace.items.articles.activities.ArticlesActivity" />
+        <activity android:name=".adultspace.activities.AdultSpaceLockScreenActivity" />
+        <activity android:name=".childrenspace.modules.vocabularymodule.activities.VocabularyElementsActivity" />
+        <activity android:name=".childrenspace.modules.vocabularymodule.activities.VocabularyCategoriesActivity" />
+        <activity android:name=".childrenspace.modules.vocabularymodule.activities.VocabularyActivity" />
+        <activity android:name=".adultspace.activities.AdultSpaceActivity" />
         <activity
-            android:name=".application.activities.ChildrenSpaceActivity"
+            android:name=".childrenspace.activities.ChildrenSpaceActivity"
             android:label="@string/title_activity_children_space"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
