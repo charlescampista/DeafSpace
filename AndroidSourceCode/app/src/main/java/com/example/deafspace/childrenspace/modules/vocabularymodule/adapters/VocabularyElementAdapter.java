@@ -9,15 +9,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.deafspace.R;
-import com.example.deafspace.childrenspace.modules.vocabularymodule.model.Category;
+import com.example.deafspace.childrenspace.modules.vocabularymodule.model.Element;
 
 import java.util.List;
 
-public class VocabularyCategoryAdapter extends BaseAdapter {
-    private List<Category> listItens;
+public class VocabularyElementAdapter extends BaseAdapter {
+
+    private List<Element> listItens;
     private Context context;
 
-    public VocabularyCategoryAdapter(List<Category> listItens, Context context) {
+    public VocabularyElementAdapter(List<Element> listItens, Context context) {
         this.listItens = listItens;
         this.context = context;
     }
@@ -29,7 +30,7 @@ public class VocabularyCategoryAdapter extends BaseAdapter {
     }
 
     @Override
-    public Category getItem(int position) {
+    public Element getItem(int position) {
         return listItens.get(position);
     }
 
@@ -42,15 +43,14 @@ public class VocabularyCategoryAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.vocabulary_category_adapter,parent,false);
+        View view = inflater.inflate(R.layout.vocabulary_element_adapter,parent,false);
 
-        Category item = listItens.get(position);
+        Element item = listItens.get(position);
 
-        ImageView ivCategoryVocabularyAdapter = (ImageView) view.findViewById(R.id.ivCategoryVocabularyAdapter);
-        ivCategoryVocabularyAdapter.setImageResource(Integer.parseInt(item.getPathImage()));
+        ImageView ivElementVocabularyAdapter = (ImageView) view.findViewById(R.id.ivElementVocabularyAdapter);
+        ivElementVocabularyAdapter.setImageResource(Integer.parseInt(item.getPathImage()));
 
-        TextView tvCategoryVocabularyAdapter = (TextView) view.findViewById(R.id.tvCategoryVocabularyAdapter);
-        tvCategoryVocabularyAdapter.setText(item.getName());
+
 
         return view;
     }

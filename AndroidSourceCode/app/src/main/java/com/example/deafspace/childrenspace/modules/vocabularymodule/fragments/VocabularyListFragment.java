@@ -7,8 +7,17 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
 
 import com.example.deafspace.R;
+import com.example.deafspace.application.utils.Bootstrap;
+import com.example.deafspace.childrenspace.modules.vocabularymodule.adapters.VocabularyElementAdapter;
+import com.example.deafspace.childrenspace.modules.vocabularymodule.model.Element;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +40,9 @@ public class VocabularyListFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     public static final String TAG = "elementsfragment";
+
+    ListView lvVocabularyElements;
+    List<Element> elementsList;
 
     public VocabularyListFragment() {
         // Required empty public constructor
@@ -69,13 +81,39 @@ public class VocabularyListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_vocabulary_list, container, false);
 
+
+
+        Button button = (Button) view.findViewById(R.id.button2);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemPressed(TAG);
+            }
+        });
+
+
+        elementsList = Bootstrap.getInstance().pegarElementos();
+
+
+        lvVocabularyElements = (ListView) view.findViewById(R.id.lvVocabularyElements);
+        VocabularyElementAdapter adapter = new VocabularyElementAdapter(elementsList,getActivity());
+        lvVocabularyElements.setAdapter(adapter);
+
+        lvVocabularyElements.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                onItemPressed(TAG);
+            }
+        });
+
+
         return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onItemPressed(String tag) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction(tag);
         }
     }
 
@@ -108,6 +146,6 @@ public class VocabularyListFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(String tag);
     }
 }

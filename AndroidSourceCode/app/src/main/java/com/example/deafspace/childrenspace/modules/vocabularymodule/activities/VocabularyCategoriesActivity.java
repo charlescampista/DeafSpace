@@ -11,6 +11,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.deafspace.R;
+import com.example.deafspace.application.utils.Bootstrap;
 import com.example.deafspace.childrenspace.modules.vocabularymodule.adapters.VocabularyCategoryAdapter;
 import com.example.deafspace.childrenspace.modules.vocabularymodule.model.Category;
 
@@ -28,10 +29,11 @@ public class VocabularyCategoriesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vocabulary_context);
 
         gvVocabularyCategories = (GridView) findViewById(R.id.gvVocabularyCategories);
-        categoryList = new ArrayList<Category>();
+        /*categoryList = new ArrayList<Category>();
         for(int i=0; i<30; i++){
             categoryList.add(new Category(String.valueOf(i),"Categoria"+i,"Path Image"));
-        }
+        }*/
+        categoryList = Bootstrap.getInstance().pegarCategorias();
         VocabularyCategoryAdapter adapter = new VocabularyCategoryAdapter(categoryList,this);
         gvVocabularyCategories.setAdapter(adapter);
 

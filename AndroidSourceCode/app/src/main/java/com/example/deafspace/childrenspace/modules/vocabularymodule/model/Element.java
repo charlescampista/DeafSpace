@@ -7,6 +7,14 @@ public class Element {
     private String pathVideo;
     private Category category;
 
+    public Element(String uuid, String name, String pathImage, String pathVideo, Category category) {
+        this.uuid = uuid;
+        this.name = name;
+        this.pathImage = pathImage;
+        this.pathVideo = pathVideo;
+        this.category = category;
+    }
+
     public String getUuid() {
         return uuid;
     }

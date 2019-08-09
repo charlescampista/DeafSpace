@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.example.deafspace.R;
 
@@ -31,6 +33,8 @@ public class VocabularyVideoFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     public static final String TAG = "videofragment";
+
+    private VideoView vvVocabularyVideo;
 
     public VocabularyVideoFragment() {
         // Required empty public constructor
@@ -68,14 +72,32 @@ public class VocabularyVideoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_vocabulary_video, container, false);
+k
+        vvVocabularyVideo = (VideoView) view.findViewById(R.id.vvVocabularyVideo);
+        String videoPath2 = "android.resource://"+getActivity().getPackageName()+"/"+R.raw.gorila;
+        playVideo(videoPath2);
+
+        Toast.makeText(getActivity(), "Create",Toast.LENGTH_LONG).show();
 
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Toast.makeText(getActivity(), "Resume",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Toast.makeText(getActivity(), "Start",Toast.LENGTH_LONG).show();
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed(String tag) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction(tag);
         }
     }
 
@@ -108,6 +130,12 @@ public class VocabularyVideoFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(String tag);
+    }
+
+    private void playVideo(String videoPath) {
+        Uri uriPath = Uri.parse(videoPath);
+        vvVocabularyVideo.setVideoURI(uriPath);
+        vvVocabularyVideo.start();
     }
 }

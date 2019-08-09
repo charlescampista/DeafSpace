@@ -1,5 +1,7 @@
 package com.example.deafspace.childrenspace.modules.vocabularymodule.model;
 
+import com.example.deafspace.R;
+
 import androidx.annotation.NonNull;
 
 import java.io.Serializable;
@@ -25,6 +27,10 @@ public class Category implements Serializable {
         this.name = name;
         this.pathImage = pathImage;
     }
+
+
+
+
 
     public String getUuid() {
         return uuid;
