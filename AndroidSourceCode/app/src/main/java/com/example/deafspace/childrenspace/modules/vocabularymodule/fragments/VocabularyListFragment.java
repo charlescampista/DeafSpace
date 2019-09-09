@@ -87,7 +87,7 @@ public class VocabularyListFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemPressed(TAG);
+                onItemPressed(TAG,null);
             }
         });
 
@@ -102,20 +102,22 @@ public class VocabularyListFragment extends Fragment {
         lvVocabularyElements.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                onItemPressed(TAG);
+                Element element = (Element) parent.getAdapter().getItem(position);
+                onItemPressed(TAG,element);
             }
         });
 
-
         return view;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onItemPressed(String tag) {
+    public void onItemPressed(String tag, Object object) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(tag);
+            mListener.onFragmentInteraction(tag,object);
         }
     }
+
 
     @Override
     public void onAttach(Context context) {
@@ -146,6 +148,6 @@ public class VocabularyListFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(String tag);
+        void onFragmentInteraction(String tag, Object object);
     }
 }

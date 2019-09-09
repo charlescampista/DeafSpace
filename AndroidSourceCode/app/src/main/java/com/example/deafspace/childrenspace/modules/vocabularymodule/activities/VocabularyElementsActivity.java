@@ -11,8 +11,11 @@ import android.widget.Toast;
 import com.example.deafspace.R;
 import com.example.deafspace.adultspace.items.articles.fragments.ArticleFragment;
 import com.example.deafspace.adultspace.items.articles.fragments.ArticlesListFragment;
+import com.example.deafspace.application.enums.AdultItems;
+import com.example.deafspace.application.enums.BundleKeys;
 import com.example.deafspace.childrenspace.modules.vocabularymodule.fragments.VocabularyListFragment;
 import com.example.deafspace.childrenspace.modules.vocabularymodule.fragments.VocabularyVideoFragment;
+import com.example.deafspace.childrenspace.modules.vocabularymodule.model.Element;
 
 public class VocabularyElementsActivity extends AppCompatActivity implements VocabularyVideoFragment.OnFragmentInteractionListener, VocabularyListFragment.OnFragmentInteractionListener {
 
@@ -62,17 +65,34 @@ public class VocabularyElementsActivity extends AppCompatActivity implements Voc
     }
 
     @Override
-    public void onFragmentInteraction(String tag) {
+    public void onFragmentInteraction(String tag, Object object) {
 
-        switch (tag){
-            case VocabularyListFragment.TAG:
-                Toast.makeText(this,"Event Received",Toast.LENGTH_LONG).show();
+        if(object != null){
+            switch (tag){
+                case VocabularyListFragment.TAG:
+                    Toast.makeText(this,"Event Received",Toast.LENGTH_LONG).show();
                 /*if(vocabularyVideoFragment == null){
                     vocabularyVideoFragment = new VocabularyVideoFragment();
                 }*/
-                vocabularyVideoFragment = new VocabularyVideoFragment();
-                replaceFragment(vocabularyVideoFragment,R.id.vocabularContainerVideo,vocabularyVideoFragment.TAG);
-                break;
+                    vocabularyVideoFragment = new VocabularyVideoFragment();
+                    Element element = (Element) object;
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(BundleKeys.VOCABULARY_ELEMENT.toString(),element);
+                    vocabularyVideoFragment.setArguments(bundle);
+                    replaceFragment(vocabularyVideoFragment,R.id.vocabularContainerVideo,vocabularyVideoFragment.TAG);
+                    break;
+            }
         }
+
+        if(object == null){
+            Toast.makeText(this,"O click fora da lista",Toast.LENGTH_SHORT).show();
+        }
+
+
+
+
+
     }
+
+
 }

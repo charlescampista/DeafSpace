@@ -11,6 +11,8 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.deafspace.R;
+import com.example.deafspace.application.enums.BundleKeys;
+import com.example.deafspace.childrenspace.modules.vocabularymodule.model.Element;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +38,8 @@ public class VocabularyVideoFragment extends Fragment {
 
     private VideoView vvVocabularyVideo;
 
+    private Element element;
+
     public VocabularyVideoFragment() {
         // Required empty public constructor
     }
@@ -49,22 +53,23 @@ public class VocabularyVideoFragment extends Fragment {
      * @return A new instance of fragment VocabularyVideoFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static VocabularyVideoFragment newInstance(String param1, String param2) {
+    /*public static VocabularyVideoFragment newInstance(String param1, String param2) {
         VocabularyVideoFragment fragment = new VocabularyVideoFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
+    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            //mParam1 = getArguments().getString(ARG_PARAM1);
+            //mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -72,12 +77,20 @@ public class VocabularyVideoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_vocabulary_video, container, false);
-k
-        vvVocabularyVideo = (VideoView) view.findViewById(R.id.vvVocabularyVideo);
-        String videoPath2 = "android.resource://"+getActivity().getPackageName()+"/"+R.raw.gorila;
-        playVideo(videoPath2);
 
-        Toast.makeText(getActivity(), "Create",Toast.LENGTH_LONG).show();
+        getBundleParameters();
+        vvVocabularyVideo = (VideoView) view.findViewById(R.id.vvVocabularyVideo);
+
+        if(element != null){
+            //String videoPath2 = "android.resource://"+getActivity().getPackageName()+"/"+R.raw.gorila;
+            String videoPath2 = "android.resource://"+getActivity().getPackageName()+"/"+element.getPathVideo();
+            playVideo(videoPath2);
+            Toast.makeText(getActivity(), "Create",Toast.LENGTH_LONG).show();
+        }
+
+        if(element == null) {
+            Toast.makeText(getActivity(), "Fragment Iniciado",Toast.LENGTH_SHORT).show();
+        }
 
         return view;
     }
@@ -97,7 +110,7 @@ k
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(String tag) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(tag);
+            mListener.onFragmentInteraction(tag,null);
         }
     }
 
@@ -130,12 +143,21 @@ k
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(String tag);
+        void onFragmentInteraction(String tag,Object object);
     }
 
     private void playVideo(String videoPath) {
         Uri uriPath = Uri.parse(videoPath);
         vvVocabularyVideo.setVideoURI(uriPath);
         vvVocabularyVideo.start();
+    }
+
+    private void getBundleParameters(){
+        if(getArguments() != null){
+            Bundle bundle = this.getArguments();
+            if(bundle != null){
+                element = (Element) bundle.getSerializable(BundleKeys.VOCABULARY_ELEMENT.toString());
+            }
+        }
     }
 }

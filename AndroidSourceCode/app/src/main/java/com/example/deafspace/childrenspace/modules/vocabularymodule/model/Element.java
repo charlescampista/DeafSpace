@@ -1,6 +1,8 @@
 package com.example.deafspace.childrenspace.modules.vocabularymodule.model;
 
-public class Element {
+import java.io.Serializable;
+
+public class Element implements Serializable {
     private String uuid;
     private String name;
     private String pathImage;
