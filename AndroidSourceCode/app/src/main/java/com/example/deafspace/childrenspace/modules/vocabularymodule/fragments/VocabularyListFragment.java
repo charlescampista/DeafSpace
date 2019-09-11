@@ -81,17 +81,6 @@ public class VocabularyListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_vocabulary_list, container, false);
 
-
-
-        Button button = (Button) view.findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemPressed(TAG,null);
-            }
-        });
-
-
         elementsList = Bootstrap.getInstance().pegarElementos();
 
 
