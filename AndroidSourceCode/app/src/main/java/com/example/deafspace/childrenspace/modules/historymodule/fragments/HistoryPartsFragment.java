@@ -1,28 +1,32 @@
-package com.example.deafspace.childrenspace.modules.vocabularymodule.fragments;
+package com.example.deafspace.childrenspace.modules.historymodule.fragments;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.Button;
 import android.widget.VideoView;
 
 import com.example.deafspace.R;
-import com.example.deafspace.application.enums.BundleKeys;
-import com.example.deafspace.childrenspace.modules.vocabularymodule.model.Element;
+import com.example.deafspace.application.utils.Bootstrap;
+import com.example.deafspace.childrenspace.modules.historymodule.model.Part;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link VocabularyVideoFragment.OnFragmentInteractionListener} interface
+ * {@link HistoryPartsFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link VocabularyVideoFragment#newInstance} factory method to
+ * Use the {@link HistoryPartsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VocabularyVideoFragment extends Fragment {
+public class HistoryPartsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -34,13 +38,14 @@ public class VocabularyVideoFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public static final String TAG = "videofragment";
+    public static final String TAG = "historypartsfragment";
 
-    private VideoView vvVocabularyVideo;
+    List<Part> partsList;
 
-    private Element element;
+    VideoView vvHistoryPart;
 
-    public VocabularyVideoFragment() {
+
+    public HistoryPartsFragment() {
         // Required empty public constructor
     }
 
@@ -50,69 +55,66 @@ public class VocabularyVideoFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment VocabularyVideoFragment.
+     * @return A new instance of fragment HistoryPartsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    /*public static VocabularyVideoFragment newInstance(String param1, String param2) {
-        VocabularyVideoFragment fragment = new VocabularyVideoFragment();
+    public static HistoryPartsFragment newInstance(String param1, String param2) {
+        HistoryPartsFragment fragment = new HistoryPartsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }*/
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            //mParam1 = getArguments().getString(ARG_PARAM1);
-            //mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_vocabulary_video, container, false);
+        View view = inflater.inflate(R.layout.fragment_history_parts, container, false);
 
-        getBundleParameters();
-        vvVocabularyVideo = (VideoView) view.findViewById(R.id.vvVocabularyVideo);
+        partsList = Bootstrap.getInstance().getParts();
 
-        if(element != null){
-            //String videoPath2 = "android.resource://"+getActivity().getPackageName()+"/"+R.raw.gorila;
-            String videoPath2 = "android.resource://"+getActivity().getPackageName()+"/"+element.getPathVideo();
-            playVideo(videoPath2);
-            Toast.makeText(getActivity(), "Create",Toast.LENGTH_LONG).show();
-        }
+        vvHistoryPart = (VideoView) view.findViewById(R.id.vvHistoryPart);
+        Button btAnimation = view.findViewById(R.id.btAnimation);
+        Button btSign = view.findViewById(R.id.btSign);
 
-        if(element == null) {
-            Toast.makeText(getActivity(), "Fragment Iniciado",Toast.LENGTH_SHORT).show();
-        }
+        btSign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Part part = partsList.get(0);
+                onItemPressed(TAG,part);
+
+            }
+        });
+
+        btAnimation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Part part = partsList.get(0);
+                playVideo("android.resource://"+getActivity().getPackageName()+"/"+part.getSignVideoFilePath());
+            }
+        });
+
 
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        Toast.makeText(getActivity(), "Resume",Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Toast.makeText(getActivity(), "Start",Toast.LENGTH_LONG).show();
-    }
-
     // TODO: Rename method, update argument and hook method into UI event
-    /*public void onButtonPressed(String tag) {
+    public void onItemPressed(String tag, Object object) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(tag,null);
+            mListener.onFragmentInteraction(tag,object);
         }
-    }*/
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -146,18 +148,14 @@ public class VocabularyVideoFragment extends Fragment {
         void onFragmentInteraction(String tag,Object object);
     }
 
+
+
     private void playVideo(String videoPath) {
         Uri uriPath = Uri.parse(videoPath);
-        vvVocabularyVideo.setVideoURI(uriPath);
-        vvVocabularyVideo.start();
+        vvHistoryPart.setVideoURI(uriPath);
+        vvHistoryPart.start();
     }
 
-    private void getBundleParameters(){
-        if(getArguments() != null){
-            Bundle bundle = this.getArguments();
-            if(bundle != null){
-                element = (Element) bundle.getSerializable(BundleKeys.VOCABULARY_ELEMENT.toString());
-            }
-        }
-    }
+
+
 }

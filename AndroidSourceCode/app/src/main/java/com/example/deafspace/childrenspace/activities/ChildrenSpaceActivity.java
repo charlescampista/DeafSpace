@@ -16,6 +16,7 @@ import com.example.deafspace.childrenspace.adapters.TestChildrenAdapter;
 import com.example.deafspace.application.enums.Modules;
 import com.example.deafspace.application.model.Module;
 import com.example.deafspace.childrenspace.modules.historymodule.activities.HistoryActivity;
+import com.example.deafspace.childrenspace.modules.historymodule.activities.HistoryHistoriesActivity;
 import com.example.deafspace.childrenspace.modules.vocabularymodule.activities.VocabularyCategoriesActivity;
 
 import java.util.ArrayList;
@@ -73,7 +74,7 @@ public class ChildrenSpaceActivity extends AppCompatActivity {
             case VOCABULARY:
                 return new Intent(this,VocabularyCategoriesActivity.class);
             case HISTORY:
-                return new Intent(this, HistoryActivity.class);
+                return new Intent(this, HistoryHistoriesActivity.class);
         }
         return null;
     }

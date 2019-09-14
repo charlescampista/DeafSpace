@@ -15,7 +15,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 @Database(entities = {History.class, PartPOJO.class}, version = 1, exportSchema = false)
 public abstract class HistoryDB extends RoomDatabase{
 
-        public abstract HistoryDAO vocabularyDAO();
+        public abstract HistoryDAO historyDAO();
 
         public static HistoryDB INSTANCE;
 

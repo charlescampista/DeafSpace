@@ -16,16 +16,12 @@ import com.example.deafspace.R;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    ListView lvHistoryHistories;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
-        lvHistoryHistories = (ListView) findViewById(R.id.lvHistoryHistories);
-
     }
 
     @Override
@@ -45,7 +41,5 @@ public class HistoryActivity extends AppCompatActivity {
         super.onRestart();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
-
-
 
 }

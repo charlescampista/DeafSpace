@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".childrenspace.modules.historymodule.activities.HistoryPlayActivity"></activity>
+        <activity android:name=".childrenspace.modules.historymodule.activities.HistoryHistoriesActivity"></activity>
+        <activity android:name=".childrenspace.modules.historymodule.activities.HistoryPlayActivity" />
         <activity
             android:name=".childrenspace.modules.historymodule.activities.HistoryActivity"
             android:label="@string/title_activity_history"

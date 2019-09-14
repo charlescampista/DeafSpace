@@ -2,6 +2,8 @@ package com.example.deafspace.application.utils;
 
 
 import com.example.deafspace.R;
+import com.example.deafspace.childrenspace.modules.historymodule.model.History;
+import com.example.deafspace.childrenspace.modules.historymodule.model.Part;
 import com.example.deafspace.childrenspace.modules.vocabularymodule.model.Category;
 import com.example.deafspace.childrenspace.modules.vocabularymodule.model.Element;
 
@@ -10,9 +12,14 @@ import java.util.List;
 
 public class Bootstrap {
 
+    //VOCABULARY MODULE
     private static List<Element> elementList;
     private static List<Category> categoryList;
+
+    //HISTORY MODULE
     private static Bootstrap bootstrap;
+    private static List<History> historyList;
+    private static List<Part> partList;
 
     private Bootstrap() {
         if(elementList == null){
@@ -46,7 +53,20 @@ public class Bootstrap {
             elementList.add(car2);
             elementList.add(car3);
             elementList.add(car4);
+        }
 
+        //HISTORY MODULE
+        if(historyList == null){
+            historyList = new ArrayList<History>();
+            History history = new History("ffa7ds86f","Alguma Historia","history genre", String.valueOf(R.drawable.teddybear));
+            historyList.add(history);
+
+            partList = new ArrayList<Part>();
+            Part part1 = new Part("djfaskfda","Introduction",String.valueOf(R.raw.gorila),String.valueOf(R.raw.gorila),String.valueOf(R.drawable.teddybear),1,history);
+            Part part2 = new Part("djfaskfda","Introduction",String.valueOf(R.raw.morango),String.valueOf(R.raw.morango),String.valueOf(R.drawable.kite),2,history);
+
+            partList.add(part1);
+            partList.add(part2);
         }
 
 
@@ -64,6 +84,8 @@ public class Bootstrap {
         return elementList;
     }
 
+
+    //VOCABULARY MODULE
     public List<Element> pegarElementos(Category categoria){
         if(categoria != null){
             List<Element> lista = new ArrayList<Element>();
@@ -82,6 +104,35 @@ public class Bootstrap {
     public Category pegarCategoria(String categoryUuid){
         for (Category categoria : categoryList) {
             if(categoria.getUuid() == categoryUuid) return categoria;
+        }
+        return null;
+    }
+
+
+    //HISTORY MODULE
+
+    public List<Part> getParts(){
+        return partList;
+    }
+
+    public List<Part> getParts(History history){
+        if(history != null){
+            List<Part> lista = new ArrayList<Part>();
+            for (Part item : partList) {
+                if(item.getHistory().getUuid() == history.getUuid()) lista.add(item);
+            }
+            return  lista;
+        }
+        return null;
+    }
+
+    public List<History> getHistories(){
+        return historyList;
+    }
+
+    public History getHistory(String historyUuid){
+        for (History item : historyList) {
+            if(item.getUuid() == historyUuid) return item;
         }
         return null;
     }

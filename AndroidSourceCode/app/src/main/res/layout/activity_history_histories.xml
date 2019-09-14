@@ -5,8 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".childrenspace.modules.historymodule.activities.HistoryActivity">
+    tools:context=".childrenspace.modules.historymodule.activities.HistoryHistoriesActivity">
 
-
+    <ListView
+        android:id="@+id/lvHistoryHistories"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

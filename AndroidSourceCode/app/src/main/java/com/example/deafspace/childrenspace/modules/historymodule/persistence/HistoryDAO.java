@@ -7,16 +7,17 @@ import com.example.deafspace.childrenspace.modules.vocabularymodule.model.Elemen
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+@Dao
 public interface HistoryDAO {
 
-    //ELEMENT
-
+    //PART
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertPart(PartPOJO part);
 
@@ -37,7 +38,7 @@ public interface HistoryDAO {
 
 
 
-    //CATEGORY
+    //HISTORY
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void  insertHistory(History history);
 
