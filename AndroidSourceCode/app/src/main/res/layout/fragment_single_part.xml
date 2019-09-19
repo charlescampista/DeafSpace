@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".childrenspace.modules.historymodule.fragments.SinglePartFragment">
+
+    <ImageView
+        android:id="@+id/ivHistorySinglePartCover"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:src="@mipmap/ic_launcher_round" />
+
+    <ImageView
+        android:id="@+id/ivHistorySinglePartPlay"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2
+"
+        android:src="@android:drawable/ic_media_play" />
+
+
+</LinearLayout>

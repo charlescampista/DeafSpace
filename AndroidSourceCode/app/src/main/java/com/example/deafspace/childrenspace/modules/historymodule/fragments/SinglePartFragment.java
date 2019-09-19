@@ -1,39 +1,34 @@
 package com.example.deafspace.childrenspace.modules.historymodule.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.VideoView;
+import android.widget.Toast;
 
 import com.example.deafspace.R;
 import com.example.deafspace.application.utils.Bootstrap;
-import com.example.deafspace.childrenspace.modules.historymodule.adapters.HistoryPartFragmentAdapter;
 import com.example.deafspace.childrenspace.modules.historymodule.enums.HistoryBundleKeys;
 import com.example.deafspace.childrenspace.modules.historymodule.enums.HistoryFragmentResult;
+import com.example.deafspace.childrenspace.modules.historymodule.model.History;
 import com.example.deafspace.childrenspace.modules.historymodule.model.Part;
-
-import java.util.List;
-import java.util.Vector;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link HistoryPartsFragment.OnFragmentInteractionListener} interface
+ * {@link SinglePartFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link HistoryPartsFragment#newInstance} factory method to
+ * Use the {@link SinglePartFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HistoryPartsFragment extends Fragment{
+public class SinglePartFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -43,17 +38,22 @@ public class HistoryPartsFragment extends Fragment{
     private String mParam1;
     private String mParam2;
 
-    private OnPartsFragmentInteractionListener mListener;
+    //private OnFragmentInteractionListener mListener;
+    private OnSinglePartInteractionListener interacton;
 
-    //public static final String TAG = "historypartsfragment";
+    public static final String TAG = "singlepartfragment";
 
-    List<Part> partsList;
-    List<Fragment> fragmentList;
-    ViewPager vpHistoryParts;
+    ImageView ivHistorySinglePartCover;
+    ImageView ivHistorySinglePartPlay;
 
 
-    public HistoryPartsFragment() {
+    Part part;
+
+
+
+    public SinglePartFragment() {
         // Required empty public constructor
+
     }
 
     /**
@@ -62,17 +62,17 @@ public class HistoryPartsFragment extends Fragment{
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HistoryPartsFragment.
+     * @return A new instance of fragment SinglePartFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HistoryPartsFragment newInstance(String param1, String param2) {
-        HistoryPartsFragment fragment = new HistoryPartsFragment();
+    /*public static SinglePartFragment newInstance(String param1, String param2) {
+        SinglePartFragment fragment = new SinglePartFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
+    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,66 +81,67 @@ public class HistoryPartsFragment extends Fragment{
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_history_parts, container, false);
+        View view = inflater.inflate(R.layout.fragment_single_part, container, false);
 
-        vpHistoryParts = (ViewPager) view.findViewById(R.id.vpHistoryParts);
+        ivHistorySinglePartCover = (ImageView) view.findViewById(R.id.ivHistorySinglePartCover);
+        ivHistorySinglePartPlay = (ImageView) view.findViewById(R.id.ivHistorySinglePartPlay);
 
-        partsList = Bootstrap.getInstance().getParts();
-        HistoryPartFragmentAdapter adapter = preparateViewPager(partsList);
-        vpHistoryParts.setAdapter(adapter);
+        getBundleParameters();
+
+        ivHistorySinglePartPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onButtonPressed(part,HistoryFragmentResult.ARGUMENT_PASSED);
+            }
+        });
 
 
-        //Part part = partsList.get(2);
-        // playVideo("android.resource://"+getActivity().getPackageName()+"/"+part.getSignVideoFilePath());
+        ivHistorySinglePartCover.setImageResource(Bootstrap.getInstance().getPartImageResource(part));
+
         return view;
     }
 
-    private HistoryPartFragmentAdapter preparateViewPager(List<Part> partsList){
-        fragmentList = new Vector<Fragment>();
-        for(Part item : partsList){
-            SinglePartFragment fragment = new SinglePartFragment();
-            Bundle bundle = new Bundle();
-            bundle.putSerializable(HistoryBundleKeys.HISTORY_SINGLE_PART_ARGUMENT.toString(),item);
-            fragment.setArguments(bundle);
-            fragmentList.add(fragment);
-        }
-        HistoryPartFragmentAdapter adapter = new HistoryPartFragmentAdapter(getActivity().getSupportFragmentManager(),fragmentList);
-        return adapter;
-    }
-
-
-
-
     // TODO: Rename method, update argument and hook method into UI event
-    public void onItemPressed(Object object, HistoryFragmentResult result) {
+    /*public void onButtonPressed(String tag, Object object, HistoryFragmentResult result) {
         if (mListener != null) {
-            mListener.onPartsInteraction(object,result);
+            mListener.onFragmentInteraction(tag, object,result);
+        }
+    }*/
+
+    public void onButtonPressed(Object object, HistoryFragmentResult result) {
+        if (interacton != null) {
+            interacton.onPlayClicked(object,result);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnPartsFragmentInteractionListener) {
-            mListener = (OnPartsFragmentInteractionListener) context;
+        /*if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
+        }*/
+        if (context instanceof OnSinglePartInteractionListener) {
+            interacton = (OnSinglePartInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnSinglePartInteractionListener");
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        //mListener = null;
+        interacton = null;
     }
 
     /**
@@ -153,10 +154,24 @@ public class HistoryPartsFragment extends Fragment{
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnPartsFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onPartsInteraction(Object object, HistoryFragmentResult result);
+
+
+    private void getBundleParameters() {
+        if (getArguments() != null) {
+            Bundle bundle = this.getArguments();
+            if (bundle != null) {
+                part = (Part) bundle.getSerializable(HistoryBundleKeys.HISTORY_SINGLE_PART_ARGUMENT.toString());
+            }
+        }
     }
 
+    /*public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(String tag, Object object, HistoryFragmentResult result);
+    }*/
 
+    public interface OnSinglePartInteractionListener {
+        // TODO: Update argument type and name
+        void onPlayClicked(Object object, HistoryFragmentResult result);
+    }
 }

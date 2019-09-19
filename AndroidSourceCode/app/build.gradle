@@ -42,4 +42,5 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
     implementation 'androidx.gridlayout:gridlayout:1.0.0-rc02'
+    implementation 'androidx.viewpager:viewpager:1.0.0'
 }

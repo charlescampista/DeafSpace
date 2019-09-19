@@ -1,6 +1,8 @@
 package com.example.deafspace.application.utils;
 
 
+import android.graphics.Bitmap;
+
 import com.example.deafspace.R;
 import com.example.deafspace.childrenspace.modules.historymodule.model.History;
 import com.example.deafspace.childrenspace.modules.historymodule.model.Part;
@@ -62,11 +64,15 @@ public class Bootstrap {
             historyList.add(history);
 
             partList = new ArrayList<Part>();
-            Part part1 = new Part("djfaskfda","Introduction",String.valueOf(R.raw.gorila),String.valueOf(R.raw.gorila),String.valueOf(R.drawable.teddybear),1,history);
-            Part part2 = new Part("djfaskfda","Introduction",String.valueOf(R.raw.morango),String.valueOf(R.raw.morango),String.valueOf(R.drawable.kite),2,history);
+            Part part1 = new Part("part1","Introduction",String.valueOf(R.raw.gorila),String.valueOf(R.raw.rinoceronte),String.valueOf(R.drawable.teddybear),1,history);
+            Part part2 = new Part("part2","Introduction",String.valueOf(R.raw.abacaxi),String.valueOf(R.raw.rinoceronte),String.valueOf(R.drawable.bottle),2,history);
+            Part part3 = new Part("part3","Introduction",String.valueOf(R.raw.cereja),String.valueOf(R.raw.rinoceronte),String.valueOf(R.drawable.beachball),3,history);
+            Part part4 = new Part("part4","Introduction",String.valueOf(R.raw.abacate),String.valueOf(R.raw.rinoceronte),String.valueOf(R.drawable.cutlery),4,history);
 
             partList.add(part1);
             partList.add(part2);
+            partList.add(part3);
+            partList.add(part4);
         }
 
 
@@ -79,6 +85,12 @@ public class Bootstrap {
 
         return bootstrap;
     }
+
+
+
+
+
+
 
     public List<Element> pegarElementos(){
         return elementList;
@@ -124,6 +136,10 @@ public class Bootstrap {
             return  lista;
         }
         return null;
+    }
+
+    public int getPartImageResource(Part part){
+        return Integer.parseInt(part.getCoverFilePath());
     }
 
     public List<History> getHistories(){

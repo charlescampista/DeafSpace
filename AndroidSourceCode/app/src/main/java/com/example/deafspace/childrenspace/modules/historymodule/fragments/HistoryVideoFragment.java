@@ -1,6 +1,7 @@
 package com.example.deafspace.childrenspace.modules.historymodule.fragments;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -14,6 +15,7 @@ import android.widget.VideoView;
 
 import com.example.deafspace.R;
 import com.example.deafspace.childrenspace.modules.historymodule.enums.HistoryBundleKeys;
+import com.example.deafspace.childrenspace.modules.historymodule.enums.HistoryFragmentResult;
 import com.example.deafspace.childrenspace.modules.historymodule.enums.HistoryFragmentsTags;
 import com.example.deafspace.childrenspace.modules.historymodule.model.Part;
 
@@ -35,12 +37,11 @@ public class HistoryVideoFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private OnVideoSignInteractionListener mListener;
 
     //public static final String TAG = HistoryFragmentsTags.TAG_HISTORY_VIDEO_FRAGMENT.toString();
     public static final String TAG = "historyvideofragment";
     private VideoView vvHistoryPartTranslation;
-
     private Part part;
 
     public HistoryVideoFragment() {
@@ -81,12 +82,24 @@ public class HistoryVideoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_history_video, container, false);
 
         getBundleParameters();
+
+        Toast.makeText(getActivity(), "ENTROU NO TRADUÇÃO FRAGMENT",Toast.LENGTH_SHORT).show();
         vvHistoryPartTranslation = (VideoView)  (VideoView) view.findViewById(R.id.vvHistoryPartTranslation);
+        vvHistoryPartTranslation.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
+        {
+            public void onCompletion(MediaPlayer mp)
+            {
+                onButtonPressed(part,HistoryFragmentResult.VIDEO_FINISHED_AND_ARGUMENT_PASSED);
+            }
+        });
+
+        //onButtonPressed(part,HistoryFragmentResult.VIDEO_FINISHED_AND_ARGUMENT_PASSED);
+
         if(part != null){
             //String videoPath2 = "android.resource://"+getActivity().getPackageName()+"/"+R.raw.gorila;
-            String videoPath2 = "android.resource://"+getActivity().getPackageName()+"/"+part.getSignVideoFilePath();
-            playVideo(videoPath2);
-            Toast.makeText(getActivity(), "Create",Toast.LENGTH_LONG).show();
+            String videoPath = "android.resource://"+getActivity().getPackageName()+"/"+part.getSignVideoFilePath();
+            playVideo(videoPath);
+
         }
 
         if(part == null) {
@@ -111,20 +124,20 @@ public class HistoryVideoFragment extends Fragment {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    /*public void onButtonPressed(Uri uri) {
+    public void onButtonPressed(Object object, HistoryFragmentResult result) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onReprodutionFinish(object,result);
         }
-    }*/
+    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnVideoSignInteractionListener) {
+            mListener = (OnVideoSignInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnVideoSignInteractionListener");
         }
     }
 
@@ -144,9 +157,9 @@ public class HistoryVideoFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnVideoSignInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(String tag,Object object);
+        void onReprodutionFinish(Object object, HistoryFragmentResult result);
     }
 
     private void playVideo(String videoPath) {
@@ -159,7 +172,7 @@ public class HistoryVideoFragment extends Fragment {
         if(getArguments() != null){
             Bundle bundle = this.getArguments();
             if(bundle != null){
-                part = (Part) bundle.getSerializable(HistoryBundleKeys.HiSTORY_PART.toString());
+                part = (Part) bundle.getSerializable(HistoryBundleKeys.HiSTORY_PART_SIGN.toString());
             }
         }
     }

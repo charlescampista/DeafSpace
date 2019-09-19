@@ -1,7 +1,9 @@
 package com.example.deafspace.childrenspace.modules.historymodule.enums;
 
 public enum HistoryBundleKeys {
-    HiSTORY_PART("HiSTORY_PART");
+    HiSTORY_PART_SIGN("HiSTORY_PART_SIGN"),
+    HiSTORY_PART_ANIMATION("HiSTORY_PART_ANIMATION"),
+    HISTORY_SINGLE_PART_ARGUMENT("HISTORY_SINGLE_PART_ARGUMENT");
 
     private final String text;
 

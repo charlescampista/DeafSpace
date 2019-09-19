@@ -38,7 +38,6 @@ public class HistoryHistoriesActivity extends AppCompatActivity {
         lvHistoryHistories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getBaseContext(),"Chamar Activity History Play Activity", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getBaseContext(),HistoryPlayActivity.class);
                 startActivity(intent);
             }
