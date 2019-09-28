@@ -234,7 +234,7 @@ public class HistoryPlayActivity extends AppCompatActivity implements HistoryVid
         Toast.makeText(this, "SIGN FINISHED",Toast.LENGTH_SHORT).show();
         HistoryPartsFragment historyPartsFragment = new HistoryPartsFragment();
         //R.id.historyContainerParts,new HistoryPartsFragment(),PARTS_FRAG
-        replaceFragment(historyPartsFragment,R.id.historyContainerParts,historyVideoFragment.TAG);
+        replaceFragment(historyPartsFragment,R.id.historyContainerParts,historyPartsFragment.TAG);
     }
 
     @Override

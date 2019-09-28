@@ -45,7 +45,7 @@ public class HistoryPartsFragment extends Fragment{
 
     private OnPartsFragmentInteractionListener mListener;
 
-    //public static final String TAG = "historypartsfragment";
+    public static final String TAG = "historypartsfragment";
 
     List<Part> partsList;
     List<Fragment> fragmentList;

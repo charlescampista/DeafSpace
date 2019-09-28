@@ -35,15 +35,15 @@ public class Bootstrap {
 
 
             elementList = new ArrayList<Element>();
-            Element car1 = new Element("jfsd8rd8","Car", String.valueOf(R.drawable.car),String.valueOf(R.raw.gorila), toyCategory);
-            Element car2 = new Element("kjl26h5g2389f","Car", String.valueOf(R.drawable.car),String.valueOf(R.raw.gorila), toyCategory);
-            Element car3 = new Element("2hj3g8","Car", String.valueOf(R.drawable.car),String.valueOf(R.raw.gorila), toyCategory);
-            Element car4 = new Element("8jg84jf2","Car", String.valueOf(R.drawable.car),String.valueOf(R.raw.gorila), toyCategory);
+            Element car1 = new Element("jfsd8rd8","Car", String.valueOf(R.drawable.car),String.valueOf(R.raw.charlesteste), toyCategory);
+            Element car2 = new Element("kjl26h5g2389f","Car", String.valueOf(R.drawable.car),String.valueOf(R.raw.charlesteste), toyCategory);
+            Element car3 = new Element("2hj3g8","Car", String.valueOf(R.drawable.car),String.valueOf(R.raw.charlesteste), toyCategory);
+            Element car4 = new Element("8jg84jf2","Car", String.valueOf(R.drawable.car),String.valueOf(R.raw.charlesteste), toyCategory);
 
-            Element milk1 = new Element("303735jw","Milk", String.valueOf(R.drawable.bottle),String.valueOf(R.raw.gorila), foodCategory);
-            Element milk2 = new Element("hjakhfq67","Milk", String.valueOf(R.drawable.bottle),String.valueOf(R.raw.gorila), foodCategory);
-            Element milk3 = new Element("fdhj267f","Milk",String.valueOf(R.drawable.bottle),String.valueOf(R.raw.gorila), foodCategory);
-            Element milk4 = new Element("7842hfhe7s6","Milk",String.valueOf(R.drawable.bottle),String.valueOf(R.raw.gorila), foodCategory);
+            Element milk1 = new Element("303735jw","Milk", String.valueOf(R.drawable.bottle),String.valueOf(R.raw.charlesteste), foodCategory);
+            Element milk2 = new Element("hjakhfq67","Milk", String.valueOf(R.drawable.bottle),String.valueOf(R.raw.charlesteste), foodCategory);
+            Element milk3 = new Element("fdhj267f","Milk",String.valueOf(R.drawable.bottle),String.valueOf(R.raw.charlesteste), foodCategory);
+            Element milk4 = new Element("7842hfhe7s6","Milk",String.valueOf(R.drawable.bottle),String.valueOf(R.raw.charlesteste), foodCategory);
 
 
             elementList.add(milk1);
