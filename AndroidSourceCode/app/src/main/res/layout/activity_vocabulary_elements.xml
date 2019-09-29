@@ -12,13 +12,15 @@
         android:layout_weight="0.5"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        android:orientation="vertical"></LinearLayout>
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="vertical">
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/vocabularContainerList"
         android:layout_width="0dp"
         android:layout_weight="0.5"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:orientation="vertical"></LinearLayout>
 </LinearLayout>

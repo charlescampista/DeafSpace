@@ -9,8 +9,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.example.deafspace.R;
+import com.example.deafspace.adultspace.items.articles.model.Article;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,12 +31,12 @@ public class ArticleFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Article article;
 
     private OnFragmentInteractionListener mListener;
 
     public static final String TAG = "articlefragment";
+    private WebView wvArticle;
 
     public ArticleFragment() {
         // Required empty public constructor
@@ -47,11 +51,10 @@ public class ArticleFragment extends Fragment {
      * @return A new instance of fragment ArticleFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ArticleFragment newInstance(String param1, String param2) {
+    public static ArticleFragment newInstance(Article param) {
         ArticleFragment fragment = new ArticleFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable("article",param);
         fragment.setArguments(args);
         return fragment;
     }
@@ -60,8 +63,7 @@ public class ArticleFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            article = (Article) getArguments().getSerializable("article");
         }
     }
 
@@ -71,13 +73,24 @@ public class ArticleFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_article, container, false);
 
+        wvArticle = (WebView) view.findViewById(R.id.wvArticle);
+
+        wvArticle.getSettings().setJavaScriptEnabled(true);
+        wvArticle.getSettings().setLoadWithOverviewMode(true);
+        wvArticle.getSettings().setUseWideViewPort(true);
+        wvArticle.getSettings().setBuiltInZoomControls(false);
+        wvArticle.getSettings().setPluginState(WebSettings.PluginState.ON);
+        wvArticle.setWebViewClient(new AppWebClient());
+        wvArticle.loadUrl(article.getLink());
+
+
         return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(String tag) {
+    public void onButtonPressed(String tag, Object object) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(tag);
+            mListener.onFragmentInteraction(tag,object);
         }
     }
 
@@ -110,6 +123,17 @@ public class ArticleFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(String tag);
+        void onFragmentInteraction(String tag, Object object);
     }
+
+
+
+    private class AppWebClient extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            return false;
+        }
+    }
+
+
 }

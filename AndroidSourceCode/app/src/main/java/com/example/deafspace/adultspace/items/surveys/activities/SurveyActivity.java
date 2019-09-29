@@ -9,6 +9,7 @@ import android.os.Bundle;
 import com.example.deafspace.R;
 import com.example.deafspace.adultspace.items.surveys.fragments.SurveyFragment;
 import com.example.deafspace.adultspace.items.surveys.fragments.SurveyListFragment;
+import com.example.deafspace.adultspace.items.surveys.model.Survey;
 
 public class SurveyActivity extends AppCompatActivity implements SurveyListFragment.OnFragmentInteractionListener, SurveyFragment.OnFragmentInteractionListener{
 
@@ -32,10 +33,10 @@ public class SurveyActivity extends AppCompatActivity implements SurveyListFragm
     }
 
     @Override
-    public void onFragmentInteraction(String tag) {
+    public void onFragmentInteraction(String tag, Object object) {
         if(tag.equals(SurveyListFragment.TAG)){
             if(surveyFragment == null){
-                surveyFragment = new SurveyFragment();
+                surveyFragment = SurveyFragment.newInstance((Survey) object);
             }
             replaceFragment(surveyFragment,R.id.surveysContainer,surveyFragment.TAG);
         }

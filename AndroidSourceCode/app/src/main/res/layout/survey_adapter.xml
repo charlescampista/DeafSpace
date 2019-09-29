@@ -7,6 +7,11 @@
     <TextView
         android:id="@+id/tvSurveyTitleAdapter"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/colorWhite"
+        android:shadowColor="@color/colorBlack"
+        android:shadowDx="1"
+        android:shadowDy="1"/>
 
 </LinearLayout>

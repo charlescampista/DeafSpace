@@ -21,7 +21,7 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher_round" />
+            android:src="@drawable/logo" />
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -31,7 +31,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:layout_weight="0.1"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorAccent"
         app:menu="@menu/navigation" />
 
 </LinearLayout>

@@ -1,6 +1,8 @@
 package com.example.deafspace.adultspace.items.articles.model;
 
-public class Article {
+import java.io.Serializable;
+
+public class Article implements Serializable {
     private String uid;
     private String name;
     private String link;

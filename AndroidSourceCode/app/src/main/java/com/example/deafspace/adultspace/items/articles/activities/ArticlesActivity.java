@@ -9,6 +9,7 @@ import android.os.Bundle;
 import com.example.deafspace.R;
 import com.example.deafspace.adultspace.items.articles.fragments.ArticleFragment;
 import com.example.deafspace.adultspace.items.articles.fragments.ArticlesListFragment;
+import com.example.deafspace.adultspace.items.articles.model.Article;
 import com.example.deafspace.childrenspace.modules.vocabularymodule.fragments.VocabularyVideoFragment;
 
 public class ArticlesActivity extends AppCompatActivity implements ArticlesListFragment.OnFragmentInteractionListener, ArticleFragment.OnFragmentInteractionListener {
@@ -32,10 +33,10 @@ public class ArticlesActivity extends AppCompatActivity implements ArticlesListF
     }
 
     @Override
-    public void onFragmentInteraction(String tag) {
+    public void onFragmentInteraction(String tag, Object object) {
         if(tag.equals(ArticlesListFragment.TAG)){
             if(articleFragment == null){
-                articleFragment = new ArticleFragment();
+                articleFragment = ArticleFragment.newInstance((Article) object);
             }
             replaceFragment(articleFragment,R.id.articlesContainer,articleFragment.TAG);
         }

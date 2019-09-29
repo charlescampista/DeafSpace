@@ -56,22 +56,20 @@ public class SurveyListFragment extends Fragment {
      * @return A new instance of fragment SurveyListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SurveyListFragment newInstance(String param1, String param2) {
+    /*public static SurveyListFragment newInstance(Survey param) {
         SurveyListFragment fragment = new SurveyListFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable("survey",param);
         fragment.setArguments(args);
         return fragment;
-    }
+    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        /*if (getArguments() != null) {
+            survey = (Survey) getArguments().getSerializable("survey");
+        }*/
     }
 
     @Override
@@ -81,8 +79,7 @@ public class SurveyListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_survey_list, container, false);
 
         surveyList = new ArrayList<Survey>();
-        surveyList.add(new Survey("Survey 1"));
-        surveyList.add(new Survey("Survey 2"));
+        surveyList.add(new Survey("Avaliação do Usuario", "https://docs.google.com/forms/d/e/1FAIpQLSdshP22AQwzIDpwKoNwG31npK3GnS6rVkBIIjjT2ShBza0jww/viewform?usp=sf_link"));
         lvSurveyList = (ListView) view.findViewById(R.id.lvSurveyList);
         SurveyAdapter adapter = new SurveyAdapter(surveyList,getActivity());
         lvSurveyList.setAdapter(adapter);
@@ -90,7 +87,7 @@ public class SurveyListFragment extends Fragment {
         lvSurveyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                onItemPressed(TAG);
+                onItemPressed(TAG, (Survey) parent.getAdapter().getItem(position));
             }
         });
 
@@ -99,9 +96,9 @@ public class SurveyListFragment extends Fragment {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onItemPressed(String tag) {
+    public void onItemPressed(String tag, Object object) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(tag);
+            mListener.onFragmentInteraction(tag, object);
         }
     }
 
@@ -134,6 +131,6 @@ public class SurveyListFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(String tag);
+        void onFragmentInteraction(String tag, Object object);
     }
 }

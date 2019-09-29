@@ -9,8 +9,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.example.deafspace.R;
+import com.example.deafspace.adultspace.items.surveys.model.Survey;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +36,8 @@ public class SurveyFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     public static final String TAG = "surveyfragment";
+    Survey survey;
+    WebView wvSuvey;
 
     public SurveyFragment() {
         // Required empty public constructor
@@ -46,11 +52,10 @@ public class SurveyFragment extends Fragment {
      * @return A new instance of fragment SurveyFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SurveyFragment newInstance(String param1, String param2) {
+    public static SurveyFragment newInstance(Survey param) {
         SurveyFragment fragment = new SurveyFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable("survey",param);
         fragment.setArguments(args);
         return fragment;
     }
@@ -59,8 +64,7 @@ public class SurveyFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            survey = (Survey) getArguments().getSerializable("survey");
         }
     }
 
@@ -68,13 +72,25 @@ public class SurveyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_survey, container, false);
+        View view = inflater.inflate(R.layout.fragment_survey, container, false);
+
+        wvSuvey = (WebView) view.findViewById(R.id.wvSuvey);
+
+        wvSuvey.getSettings().setJavaScriptEnabled(true);
+        wvSuvey.getSettings().setLoadWithOverviewMode(true);
+        wvSuvey.getSettings().setUseWideViewPort(true);
+        wvSuvey.getSettings().setBuiltInZoomControls(false);
+        wvSuvey.getSettings().setPluginState(WebSettings.PluginState.ON);
+        wvSuvey.setWebViewClient(new AppWebClient());
+        wvSuvey.loadUrl(survey.getLink());
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onItemPressed(String tag) {
+    public void onItemPressed(String tag, Object object) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(tag);
+            mListener.onFragmentInteraction(tag,object);
         }
     }
 
@@ -107,6 +123,17 @@ public class SurveyFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(String tag);
+        void onFragmentInteraction(String tag, Object object);
     }
+
+
+    private class AppWebClient extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            return false;
+        }
+    }
+
+
+
 }

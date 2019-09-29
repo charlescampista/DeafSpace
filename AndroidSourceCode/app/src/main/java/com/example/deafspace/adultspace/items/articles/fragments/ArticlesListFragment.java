@@ -84,8 +84,8 @@ public class ArticlesListFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_articles_list, container, false);
 
         articleList = new ArrayList<Article>();
-        articleList.add(new Article("sd8f78s","Article1","https://","Some text","imagePath","image"));
-        articleList.add(new Article("c789df","Article2","https://","Some text","imagePath","image"));
+        articleList.add(new Article("sd8f78s","O Papel da Família Diante da Surdez dos Filhos","https://www.portaleducacao.com.br/conteudo/artigos/idiomas/o-papel-da-familia-diante-da-surdez-dos-filhos/26895","Podemos considerar o diagnóstico da surdez como sendo o marco inicial...","imagePath","image"));
+        articleList.add(new Article("c789df","ALFABETIZAÇÃO E LETRAMENTO DE CRIANÇAS SURDAS","http://mirandalibrassemfronteiras.weebly.com/-a-alfabetizaccedilatildeo-de-crianccedilas-surdas---implementaccedilatildeo-da-educaccedilatildeo-bilingue-nota-teacutecnica-052011-ndash-mecsecadigab.html","Some text","imagePath","image"));
         lvArticleList = (ListView) view.findViewById(R.id.lvArticleList);
         ArticleAdapter adapter = new ArticleAdapter(articleList,getActivity());
         lvArticleList.setAdapter(adapter);
@@ -93,7 +93,7 @@ public class ArticlesListFragment extends Fragment {
         lvArticleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                onItemPressed(TAG);
+                onItemPressed(TAG,(Article) parent.getAdapter().getItem(position));
             }
         });
 
@@ -101,9 +101,9 @@ public class ArticlesListFragment extends Fragment {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onItemPressed(String tag) {
+    public void onItemPressed(String tag, Object object) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(tag);
+            mListener.onFragmentInteraction(tag,object);
         }
     }
 
@@ -136,6 +136,6 @@ public class ArticlesListFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(String tag);
+        void onFragmentInteraction(String tag, Object object);
     }
 }
