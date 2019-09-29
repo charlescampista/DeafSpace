@@ -43,8 +43,11 @@ public class VocabularyCategoriesActivity extends AppCompatActivity {
         gvVocabularyCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getBaseContext(),"Chamar Activity Vocabulario", Toast.LENGTH_SHORT).show();
+                Category category = (Category) parent.getAdapter().getItem(position);
                 Intent intent = new Intent(getBaseContext(),VocabularyElementsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("category",category);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });

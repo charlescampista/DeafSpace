@@ -15,18 +15,21 @@ import com.example.deafspace.application.enums.AdultItems;
 import com.example.deafspace.application.enums.BundleKeys;
 import com.example.deafspace.childrenspace.modules.vocabularymodule.fragments.VocabularyListFragment;
 import com.example.deafspace.childrenspace.modules.vocabularymodule.fragments.VocabularyVideoFragment;
+import com.example.deafspace.childrenspace.modules.vocabularymodule.model.Category;
 import com.example.deafspace.childrenspace.modules.vocabularymodule.model.Element;
 
 public class VocabularyElementsActivity extends AppCompatActivity implements VocabularyVideoFragment.OnFragmentInteractionListener, VocabularyListFragment.OnFragmentInteractionListener {
 
     VocabularyVideoFragment vocabularyVideoFragment;
     VocabularyListFragment vocabularyListFragment;
+    Category category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vocabulary_elements);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        this.category = (Category) getIntent().getExtras().getSerializable("category");
         startFragments();
     }
 
@@ -59,7 +62,11 @@ public class VocabularyElementsActivity extends AppCompatActivity implements Voc
         replaceFragment(vocabularyVideoFragment,R.id.vocabularContainerVideo,vocabularyVideoFragment.TAG);
 
         if(vocabularyListFragment == null){
-            vocabularyListFragment = new VocabularyListFragment();
+            vocabularyListFragment = VocabularyListFragment.newInstance(this.category);
+            /*Bundle bundle = new Bundle();
+            bundle.putSerializable("category",this.category);
+            vocabularyVideoFragment.setArguments(bundle);*/
+            Toast.makeText(this,this.category.getName(),Toast.LENGTH_SHORT).show();
         }
         replaceFragment(vocabularyListFragment,R.id.vocabularContainerList,vocabularyListFragment.TAG);
     }

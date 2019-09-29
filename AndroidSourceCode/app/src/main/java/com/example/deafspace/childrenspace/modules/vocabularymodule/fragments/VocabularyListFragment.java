@@ -10,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.deafspace.R;
 import com.example.deafspace.application.utils.Bootstrap;
 import com.example.deafspace.childrenspace.modules.vocabularymodule.adapters.VocabularyElementAdapter;
+import com.example.deafspace.childrenspace.modules.vocabularymodule.model.Category;
 import com.example.deafspace.childrenspace.modules.vocabularymodule.model.Element;
 
 import java.util.ArrayList;
@@ -43,6 +45,7 @@ public class VocabularyListFragment extends Fragment {
 
     ListView lvVocabularyElements;
     List<Element> elementsList;
+    Category category;
 
     public VocabularyListFragment() {
         // Required empty public constructor
@@ -57,11 +60,10 @@ public class VocabularyListFragment extends Fragment {
      * @return A new instance of fragment VocabularyListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static VocabularyListFragment newInstance(String param1, String param2) {
+    public static VocabularyListFragment newInstance(Category param) {
         VocabularyListFragment fragment = new VocabularyListFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable("category", param);
         fragment.setArguments(args);
         return fragment;
     }
@@ -70,9 +72,11 @@ public class VocabularyListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            //mParam1 = getArguments().getString(ARG_PARAM1);
+            //mParam2 = getArguments().getString(ARG_PARAM2);
+            this.category = (Category) getArguments().getSerializable("category");
         }
+
     }
 
     @Override
@@ -81,7 +85,13 @@ public class VocabularyListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_vocabulary_list, container, false);
 
-        elementsList = Bootstrap.getInstance().pegarElementos();
+
+
+        Toast.makeText(getContext(),category.getName(),Toast.LENGTH_SHORT).show();
+
+        if(category.getUuid().equals("1")) elementsList = Bootstrap.getInstance().pegarElementosFood();
+        if(category.getUuid().equals("2")) elementsList = Bootstrap.getInstance().pegarElementosBeach();
+
 
 
         lvVocabularyElements = (ListView) view.findViewById(R.id.lvVocabularyElements);
@@ -95,6 +105,7 @@ public class VocabularyListFragment extends Fragment {
                 onItemPressed(TAG,element);
             }
         });
+
 
         return view;
 
