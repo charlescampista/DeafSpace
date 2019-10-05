@@ -90,7 +90,7 @@ public class HistoryAnimationFragment extends Fragment {
         {
             public void onCompletion(MediaPlayer mp)
             {
-                Toast.makeText(getActivity(), "TERMINOU O VIDEO",Toast.LENGTH_SHORT).show();
+
                 //onVideoFinished(part,HistoryFragmentResult.VIDEO_FINISHED_AND_ARGUMENT_PASSED);
                 interaction.onAnimationFinished(part,HistoryFragmentResult.VIDEO_FINISHED_AND_ARGUMENT_PASSED);
 
@@ -99,8 +99,7 @@ public class HistoryAnimationFragment extends Fragment {
 
         //whenVideoFinished(part,HistoryFragmentResult.VIDEO_FINISHED_AND_ARGUMENT_PASSED);
 
-        Toast.makeText(getActivity(), "ESTA O ANIMATION",Toast.LENGTH_SHORT).show();
-        Toast.makeText(getActivity(),interaction == null ? "é nulo" : "não é nulo" ,Toast.LENGTH_SHORT).show();
+
 
         //onButtonPressed(TAG,new Object(),HistoryFragmentResult.VIDEO_FINISHED_AND_ARGUMENT_PASSED);
 
@@ -114,7 +113,7 @@ public class HistoryAnimationFragment extends Fragment {
         }
 
         if(part == null) {
-            Toast.makeText(getActivity(), "Fragment Iniciado",Toast.LENGTH_SHORT).show();
+
         }
 
         //playVideo("android.resource://"+getActivity().getPackageName()+"/"+part.getSignVideoFilePath());
@@ -131,7 +130,7 @@ public class HistoryAnimationFragment extends Fragment {
     }*/
 
     public void onVideoFinished(Object object, HistoryFragmentResult result) {
-        Toast.makeText(getActivity(), "CHAMOU O VIDEO FINISHED",Toast.LENGTH_SHORT).show();
+
 
         if (interaction != null) {
             interaction.onAnimationFinished(object,result);

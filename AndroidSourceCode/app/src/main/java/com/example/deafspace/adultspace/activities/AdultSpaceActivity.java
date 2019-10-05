@@ -32,11 +32,11 @@ public class AdultSpaceActivity extends AppCompatActivity {
 
         gvItensAdultSpace = (GridView) findViewById(R.id.gvItensAdultSpace);
         list = new ArrayList<AdultSpaceItem>();
-        list.add(new AdultSpaceItem("f78d","",-1,"Artigos", AdultItems.ARTICLES));
-        list.add(new AdultSpaceItem("f78fds","",-1,"Pesquisas", AdultItems.SURVEYS));
-        list.add(new AdultSpaceItem("gf89d","",-1,"Downloads", AdultItems.DOWNLOADS));
-        list.add(new AdultSpaceItem("fds78s","",-1,"Módulos", AdultItems.MODULES));
-        list.add(new AdultSpaceItem("l23fn","",-1,"Opine", AdultItems.TALK_TO_US));
+        list.add(new AdultSpaceItem("f78d",String.valueOf(R.drawable.articleicon),-1,"Artigos", AdultItems.ARTICLES));
+        list.add(new AdultSpaceItem("f78fds",String.valueOf(R.drawable.surveyicon),-1,"Pesquisas", AdultItems.SURVEYS));
+        list.add(new AdultSpaceItem("gf89d",String.valueOf(R.drawable.downloadsicon),-1,"Downloads", AdultItems.DOWNLOADS));
+        list.add(new AdultSpaceItem("fds78s",String.valueOf(R.drawable.modulosicon),-1,"Módulos", AdultItems.MODULES));
+        list.add(new AdultSpaceItem("l23fn",String.valueOf(R.drawable.opinionicon),-1,"Opine", AdultItems.TALK_TO_US));
 
         TestAdultAdapter testAdultAdapter = new TestAdultAdapter(list,this);
         gvItensAdultSpace.setAdapter(testAdultAdapter);
@@ -44,7 +44,6 @@ public class AdultSpaceActivity extends AppCompatActivity {
         gvItensAdultSpace.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getBaseContext(),"Item Clicado", Toast.LENGTH_SHORT).show();
                 AdultSpaceItem item =(AdultSpaceItem) parent.getAdapter().getItem(position);
                 Intent intent = getItemActivity(item.getAdultItems());
                 startActivity(intent);

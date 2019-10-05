@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.deafspace.R;
@@ -46,8 +47,11 @@ public class TestChildrenAdapter extends BaseAdapter {
 
         Module item = listItens.get(position);
 
-        TextView tvTitleTestAdultAdapter = (TextView) view.findViewById(R.id.tvTitleTestChildrenAdapter);
-        tvTitleTestAdultAdapter.setText(item.getName());
+        ImageView ivModulesCover = (ImageView) view.findViewById(R.id.ivModuleCover);
+        ivModulesCover.setImageResource(Integer.parseInt(item.getImagePath()));
+
+        //TextView tvTitleTestAdultAdapter = (TextView) view.findViewById(R.id.tvTitleTestChildrenAdapter);
+        //tvTitleTestAdultAdapter.setText(item.getName());
 
         return view;
     }

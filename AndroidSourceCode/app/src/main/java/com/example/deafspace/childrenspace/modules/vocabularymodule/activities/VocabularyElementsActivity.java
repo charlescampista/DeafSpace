@@ -66,7 +66,7 @@ public class VocabularyElementsActivity extends AppCompatActivity implements Voc
             /*Bundle bundle = new Bundle();
             bundle.putSerializable("category",this.category);
             vocabularyVideoFragment.setArguments(bundle);*/
-            Toast.makeText(this,this.category.getName(),Toast.LENGTH_SHORT).show();
+
         }
         replaceFragment(vocabularyListFragment,R.id.vocabularContainerList,vocabularyListFragment.TAG);
     }
@@ -77,7 +77,7 @@ public class VocabularyElementsActivity extends AppCompatActivity implements Voc
         if(object != null){
             switch (tag){
                 case VocabularyListFragment.TAG:
-                    Toast.makeText(this,"Event Received",Toast.LENGTH_LONG).show();
+
                 /*if(vocabularyVideoFragment == null){
                     vocabularyVideoFragment = new VocabularyVideoFragment();
                 }*/

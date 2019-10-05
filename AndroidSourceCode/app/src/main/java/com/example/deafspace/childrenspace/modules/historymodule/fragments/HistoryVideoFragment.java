@@ -83,7 +83,7 @@ public class HistoryVideoFragment extends Fragment {
 
         getBundleParameters();
 
-        Toast.makeText(getActivity(), "ENTROU NO TRADUÇÃO FRAGMENT",Toast.LENGTH_SHORT).show();
+
         vvHistoryPartTranslation = (VideoView)  (VideoView) view.findViewById(R.id.vvHistoryPartTranslation);
         vvHistoryPartTranslation.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
         {
@@ -114,13 +114,13 @@ public class HistoryVideoFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Toast.makeText(getActivity(), "Resume",Toast.LENGTH_LONG).show();
+
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Toast.makeText(getActivity(), "Start",Toast.LENGTH_LONG).show();
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

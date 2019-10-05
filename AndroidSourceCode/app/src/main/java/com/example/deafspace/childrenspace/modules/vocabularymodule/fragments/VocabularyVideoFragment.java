@@ -85,7 +85,6 @@ public class VocabularyVideoFragment extends Fragment {
             //String videoPath2 = "android.resource://"+getActivity().getPackageName()+"/"+R.raw.gorila;
             String videoPath2 = "android.resource://"+getActivity().getPackageName()+"/"+element.getPathVideo();
             playVideo(videoPath2);
-            Toast.makeText(getActivity(), "Create",Toast.LENGTH_LONG).show();
         }
 
         if(element == null) {
@@ -98,13 +97,13 @@ public class VocabularyVideoFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Toast.makeText(getActivity(), "Resume",Toast.LENGTH_LONG).show();
+
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Toast.makeText(getActivity(), "Start",Toast.LENGTH_LONG).show();
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

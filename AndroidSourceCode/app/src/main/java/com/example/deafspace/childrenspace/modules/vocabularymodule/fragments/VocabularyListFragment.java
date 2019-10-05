@@ -87,7 +87,7 @@ public class VocabularyListFragment extends Fragment {
 
 
 
-        Toast.makeText(getContext(),category.getName(),Toast.LENGTH_SHORT).show();
+
 
         if(category.getUuid().equals("1")) elementsList = Bootstrap.getInstance().pegarElementosFood();
         if(category.getUuid().equals("2")) elementsList = Bootstrap.getInstance().pegarElementosBeach();

@@ -35,16 +35,15 @@ public class ChildrenSpaceActivity extends AppCompatActivity {
 
         gvModulesChildrenSpace = (GridView) findViewById(R.id.gvModulesChildrenSpace);
         list = new ArrayList<Module>();
-        list.add(new Module("","Modulo Vocabulary","Lista","",0, Modules.VOCABULARY));
-        list.add(new Module("","Modulo Customizado","Lista","",0,Modules.CUSTOMIZED_ELEMENTS));
-        list.add(new Module("","Modulo História","Animação","",0,Modules.HISTORY));
+        list.add(new Module("","Modulo Vocabulary","Lista",String.valueOf(R.drawable.vocabularycover),0, Modules.VOCABULARY));
+        list.add(new Module("","Modulo Customizado","Lista",String.valueOf(R.drawable.customizedcover),0,Modules.CUSTOMIZED_ELEMENTS));
+        list.add(new Module("","Modulo História","Animação",String.valueOf(R.drawable.hystorycover),0,Modules.HISTORY));
         TestChildrenAdapter testChildrenAdapter = new TestChildrenAdapter(list,this);
         gvModulesChildrenSpace.setAdapter(testChildrenAdapter);
 
         gvModulesChildrenSpace.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getBaseContext(),"Item Clicado", Toast.LENGTH_SHORT).show();
                 Module module = (Module) parent.getAdapter().getItem(position);
                 startActivity(getModuleActivity(module.getModuleType()));
             }

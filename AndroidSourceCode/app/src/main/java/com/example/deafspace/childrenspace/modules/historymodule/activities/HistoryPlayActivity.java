@@ -212,10 +212,10 @@ public class HistoryPlayActivity extends AppCompatActivity implements HistoryVid
 
     @Override
     public void onAnimationFinished(Object object, HistoryFragmentResult result) {
-        Toast.makeText(this, "ANIMATION FINSHED",Toast.LENGTH_SHORT).show();
+
         //showPartsFragment();
         if(result == HistoryFragmentResult.VIDEO_FINISHED_AND_ARGUMENT_PASSED){
-            Toast.makeText(this, "RECONHECEU O RESULT",Toast.LENGTH_SHORT).show();
+
             historyVideoFragment = new HistoryVideoFragment();
             Bundle bundle = new Bundle();
             bundle.putSerializable(HistoryBundleKeys.HiSTORY_PART_SIGN.toString(),(Part) object);
@@ -231,7 +231,7 @@ public class HistoryPlayActivity extends AppCompatActivity implements HistoryVid
 
     @Override
     public void onReprodutionFinish(Object object, HistoryFragmentResult result) {
-        Toast.makeText(this, "SIGN FINISHED",Toast.LENGTH_SHORT).show();
+
         HistoryPartsFragment historyPartsFragment = new HistoryPartsFragment();
         //R.id.historyContainerParts,new HistoryPartsFragment(),PARTS_FRAG
         replaceFragment(historyPartsFragment,R.id.historyContainerParts,historyPartsFragment.TAG);
@@ -239,9 +239,9 @@ public class HistoryPlayActivity extends AppCompatActivity implements HistoryVid
 
     @Override
     public void onPlayClicked(Object object, HistoryFragmentResult result) {
-        Toast.makeText(this, "SINGLE PART CLICK",Toast.LENGTH_SHORT).show();
+
         if(result == HistoryFragmentResult.ARGUMENT_PASSED){
-            Toast.makeText(this, "RECONHECEU O RESULT",Toast.LENGTH_SHORT).show();
+
             //hidePartsFragment();
             HistoryAnimationFragment animationFragment = new HistoryAnimationFragment();
             Bundle bundle = new Bundle();
